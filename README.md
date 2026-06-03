@@ -24,8 +24,8 @@ python-game-template/
 │
 ├── classes/
 │   ├── player.py
-|   ├── coin.py
-|   ├── text.py
+│   ├── coin.py
+│   ├── text.py
 │   ├── enemy.py
 │   └── game_object.py
 │
