@@ -8,6 +8,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (50, 120, 255)
 RED = (220, 50, 50)
+YELLOW = (255, 255, 0)
 
 IMAGES_PATH = "assets/images"
 SOUNDS_PATH = "assets/sounds"
@@ -20,3 +21,9 @@ PLAYER_SPEED = 5
 ENEMY_WIDTH = 50
 ENEMY_HEIGHT = 50
 ENEMY_SPEED = 3
+
+COIN_WIDTH = 25
+COIN_HEIGHT = 25
+
+FONT_STYLE = "Arial"
+FONT_SIZE = 20

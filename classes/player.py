@@ -2,6 +2,7 @@ import pygame
 
 from constants import BLUE, PLAYER_HEIGHT, PLAYER_SPEED, PLAYER_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH
 from classes.game_object import GameObject
+from utils.collision import check_collision
 from utils.helpers import clamp
 
 
@@ -10,21 +11,49 @@ class Player(GameObject):
         super().__init__(x, y, PLAYER_WIDTH, PLAYER_HEIGHT, BLUE)
         self.speed = PLAYER_SPEED
 
-    def handle_movement(self, keys):
+    def handle_movement(self):
+
+        dx = 0
+        dy = 0
+
+        keys = pygame.key.get_pressed()
+
         if keys[pygame.K_LEFT]:
-            self.x -= self.speed
+            dx -= self.speed
 
         if keys[pygame.K_RIGHT]:
-            self.x += self.speed
+            dx += self.speed
 
         if keys[pygame.K_UP]:
-            self.y -= self.speed
+            dy -= self.speed
 
         if keys[pygame.K_DOWN]:
-            self.y += self.speed
+            dy += self.speed
 
-        self.x = clamp(self.x, 0, SCREEN_WIDTH - self.width)
-        self.y = clamp(self.y, 0, SCREEN_HEIGHT - self.height)
+        self.dx = clamp(self.x, 0, SCREEN_WIDTH - self.width)
+        self.dy = clamp(self.y, 0, SCREEN_HEIGHT - self.height)
+
+        self.x += dx
+        self.y += dy
+
+    def coin_collisions(self, coins, coin_counter):
+        for coin in coins[:]:
+            if check_collision(self, coin):
+                coin_counter += 1
+                coins.remove(coin)
+        
+        return coin_counter
+
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.get_rect())
+
+    
+    def update(self, screen, coins, coin_counter):
+
+        self.handle_movement()
+        self.draw(screen)
+        coin_counter = self.coin_collisions(coins, coin_counter)
+
+        return coin_counter
+
