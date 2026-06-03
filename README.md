@@ -24,6 +24,8 @@ python-game-template/
 │
 ├── classes/
 │   ├── player.py
+|   ├── coin.py
+|   ├── text.py
 │   ├── enemy.py
 │   └── game_object.py
 │
@@ -105,6 +107,8 @@ Exemplos:
 ```txt
 player.py
 enemy.py
+coin.py
+text.py
 game_object.py
 ```
 

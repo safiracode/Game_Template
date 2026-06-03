@@ -30,11 +30,10 @@ class Player(GameObject):
         if keys[pygame.K_DOWN]:
             dy += self.speed
 
-        self.dx = clamp(self.x, 0, SCREEN_WIDTH - self.width)
-        self.dy = clamp(self.y, 0, SCREEN_HEIGHT - self.height)
+        self.x = clamp(self.x + dx, 0, SCREEN_WIDTH - self.width)
+        self.y = clamp(self.y + dy, 0, SCREEN_HEIGHT - self.height)
 
-        self.x += dx
-        self.y += dy
+
 
     def coin_collisions(self, coins, coin_counter):
         for coin in coins[:]:
